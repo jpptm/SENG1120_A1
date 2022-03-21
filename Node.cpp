@@ -8,24 +8,19 @@ Node::Node(){
     value_type();
 }
 
-
-Node::Node(const value_type& node_data_){
-    node_data = node_data_;
-}
-
 // empty destructor
 Node::~Node(){}
 
 // setters
-void Node::set_next(const Node* next_){
-    next_ -> next;
+void Node::set_next(Node* next_){
+    next = next_;
 }
 
-void Node::set_previous(const Node* previous_){
-    previous_ -> previous;
+void Node::set_previous(Node* previous_){
+    previous = previous_;
 }
 
-void Node::set_data(const value_type& node_data_){
+void Node::set_data(value_type node_data_){
     node_data = node_data_;
 }
 
@@ -38,6 +33,6 @@ Node* Node::get_previous() const{
     return previous;
 }
 
-value_type Node::get_data() const{
+Node::value_type Node::get_data() const{
     return node_data;
 }

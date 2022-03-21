@@ -11,15 +11,14 @@ class Node{
     public:
     // initialising constructors
     Node();
-    Node(const value_type& node_data_);
 
     // initialise destructor
     ~Node();
 
     // initialise getters and setters
-    void set_next(const Node* next_);
-    void set_previous(const Node* previous_);
-    void set_data(const value_type& node_data_);
+    void set_next(Node* next_);
+    void set_previous(Node* previous_);
+    void set_data(value_type node_data_);
 
     Node* get_next() const;
     Node* get_previous() const;
