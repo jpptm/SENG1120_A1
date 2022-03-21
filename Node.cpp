@@ -25,6 +25,7 @@ void Node::set_data(value_type node_data_){
 }
 
 // getters
+// NB: set return value of getter as const since they dont alter anything
 Node* Node::get_next() const{
     return next;
 }

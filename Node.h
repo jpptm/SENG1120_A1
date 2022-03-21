@@ -26,8 +26,11 @@ class Node{
     
     // declare private member variables
     private:
+    // pointer pointing to next node
     Node* next;
+    // pointer pointing to previous node
     Node* previous;
+    // data within node
     value_type node_data;
 };
 #endif // NODE_H
