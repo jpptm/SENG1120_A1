@@ -5,11 +5,11 @@
 #include <cstdlib>
 
 class Node{
-    // initialise typedef
-    typedef Student value_type;
-
     public:
     // initialising constructors
+    typedef Student value_type;
+
+    // initialise empty constructor
     Node();
 
     // initialise destructor
@@ -18,7 +18,7 @@ class Node{
     // initialise getters and setters
     void set_next(Node* next_);
     void set_previous(Node* previous_);
-    void set_data(value_type node_data_);
+    void set_data(value_type& node_data_);
 
     Node* get_next() const;
     Node* get_previous() const;

@@ -20,7 +20,7 @@ void Node::set_previous(Node* previous_){
     previous = previous_;
 }
 
-void Node::set_data(value_type node_data_){
+void Node::set_data(value_type& node_data_){
     node_data = node_data_;
 }
 
