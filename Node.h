@@ -5,10 +5,10 @@
 #include <cstdlib>
 
 class Node{
+    public:
     // initialise typedef
     typedef Student value_type;
-
-    public:
+    
     // initialising constructors
     Node();
     Node(const value_type& node_data_);

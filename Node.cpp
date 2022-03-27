@@ -38,6 +38,6 @@ Node* Node::get_previous() const{
     return previous;
 }
 
-value_type Node::get_data() const{
+Node::value_type Node::get_data() const{
     return node_data;
 }
