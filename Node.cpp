@@ -2,39 +2,42 @@
 #include "Node.h"
 
 // constructors
-Node::Node(){
-    next = NULL;
-    previous = NULL;
-    value_type();
-}
-
-
-Node::Node(const value_type& node_data_){
-    node_data = node_data_;
+Node::Node(Node* next_node, Node* previous_node, value_type& object_data){
+    this->next = next_node;
+    this->previous = previous_node;
+    this->node_data = object_data;
 }
 
 // empty destructor
 Node::~Node(){}
 
 // setters
-void Node::set_next(const Node* next_){
-    next_ -> next;
+void Node::set_next(Node* next_){
+    next = next_;
 }
 
-void Node::set_previous(const Node* previous_){
-    previous_ -> previous;
+void Node::set_previous(Node* previous_){
+    previous = previous_;
 }
 
-void Node::set_data(const value_type& node_data_){
+void Node::set_data(value_type& node_data_){
     node_data = node_data_;
 }
 
 // getters
-Node* Node::get_next() const{
+const Node* Node::get_next() const{
     return next;
 }
 
-Node* Node::get_previous() const{
+const Node* Node::get_previous() const{
+    return previous;
+}
+
+Node* Node:: getNext(){
+    return next;
+}
+
+Node* Node::getPrevious(){
     return previous;
 }
 
