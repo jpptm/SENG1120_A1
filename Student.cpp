@@ -42,9 +42,19 @@ int Student::get_score() const
 	return score;
 }
 
-// overloaded ostream operator
+// overloaded << for student class
 ostream& operator <<(ostream& out, const Student& value)
 {
     out << "(" << value.get_name() << "," << value.get_score() << ") ";
     return out;
 } 
+
+// overload < for order()
+bool Student::operator <(const Student& rhs){
+	if(score < rhs.score){
+		return true;
+	}
+	else{
+		return false;
+	}
+}

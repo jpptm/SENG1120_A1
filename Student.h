@@ -28,6 +28,9 @@ class Student
 		string get_name() const;
 		int get_score() const;
 
+		// overload < 
+		bool operator <(const Student& rhs);
+		
 	//Private member variables
 	private:
 		string name; 	// student's name

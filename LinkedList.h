@@ -7,7 +7,6 @@ class LinkedList{
     // methods needed: add to tail, remove, operator +=  << overload, printStatistics, count, order and constructor
     // constructor
     LinkedList();
-    LinkedList(Node::value_type& data);
 
     // destructor
     ~LinkedList();
@@ -21,8 +20,7 @@ class LinkedList{
     // remove node by using the string value of the object as a tag / marker
     void remove(string name_);
 
-    // print the details of each node - I think that both of the following functions should not be void
-    // as we need the current node to be reset to its initial value for future uses
+    // print (lowest score/ mean / highest score)
     void printStatistics() const;
 
     // count number of students that have the same name by taking a string input
@@ -33,9 +31,9 @@ class LinkedList{
 
     // print function for printStatistics() - this is so we don't have to return a pointer so we don't break encapsulation
     string LinkedList_to_string() const;
-
-    // TEMPORARY DELETE LATER all below
-    Node* get_head() const;
+    
+    // order method -sort nodes from lowest to highest marks
+    void order();
 
     private:
     // include current node tag

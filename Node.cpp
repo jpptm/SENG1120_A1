@@ -3,9 +3,9 @@
 
 // constructors
 Node::Node(Node* next_node, Node* previous_node, value_type& object_data){
-    this->next = next_node;
-    this->previous = previous_node;
-    this->node_data = object_data;
+    this -> next = next_node;
+    this -> previous = previous_node;
+    this -> node_data = object_data;
 }
 
 // empty destructor
