@@ -89,14 +89,13 @@ int main()
 	cout << endl << "Number of students named 'Carol': ";
 	cout << (firstList.count("Carol") + secondList.count("Carol")) << endl << endl;
 
-//  Uncomment this section if you are implementing the function order()	
-/*
+
 	cout << "Ordered lists: " << endl;
 	firstList.order();
 	secondList.order();
 	cout << "List 1: " << firstList  << endl;
 	cout << "List 2: " << secondList << endl << endl;
-*/
+
 
 	cout << "The program has finished." << endl;
 	return 0;
