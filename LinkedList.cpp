@@ -51,7 +51,7 @@ void LinkedList::remove(string name_){
         current = head;
         // run through the whole list
         while (current != NULL){
-            if((current->get_data()).get_name() == name_){
+            if((current -> get_data()).get_name() == name_){
                 // account for three scenarios - deleting head, deleting tail, and deleting an internal node
 
                 // account for removing head
@@ -216,96 +216,82 @@ ostream& operator <<(ostream& out, const LinkedList& list){
     return out;
 }
 
+void LinkedList::swap(Node* j, Node* jnext){
+    // activate this function if  current < next 
+    // base with the question "is j > jnext?"
+    Node* jprevious; Node* jnextnext;
+
+    jprevious = j -> getPrevious();
+    jnextnext = jnext -> getNext();
+
+    // if j is our head node and j is bigger than j next, swap and make jnext head
+    if (jprevious == NULL){ 
+        jnext -> set_previous(NULL);
+        jnext -> set_next(j);
+        j -> set_previous(jnext);
+
+        jnextnext -> set_previous(j);
+        j -> set_next(jnextnext);
+
+        head = jnext;
+    }
+
+    // if jnext is tail and j is bigger than j next, swap and make j tails
+    else if (jnextnext == NULL){
+        jprevious -> set_next(jnext);
+        jnext -> set_previous(jprevious);
+
+        jnext -> set_next(j);
+        j -> set_previous(jnext);
+        j -> set_next(NULL);
+        
+        tail = j;
+
+    }
+
+    // if both nodes are neither tail nor heads i.e., internal nodes
+    else{
+        jnext -> set_next(j);
+        j -> set_previous(jnext);
+
+        jprevious -> set_next(jnext);
+        jnext -> set_previous(jprevious);
+
+        j -> set_next(jnextnext);
+        jnextnext -> set_previous(j);
+    }
+}
+
 
 // sort linked list using scores of nodes
+// maybe boolean instantiation messed memory addresses up?
+
+// maybe everytime a swap happens, we revert back to head
 void LinkedList::order(){
-    // FIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIIX AND FINALISE
-    Node* previous; Node* next; Node* new_start; Node* target;
+    Node* temp_current = head;
+    Node* origin = head;
 
-    Node::value_type minimum_score = current -> get_data();
+    //cout << temp_current -> get_data() << endl;
 
-    new_start = head;
-    target = current;
+    while(temp_current != NULL){
 
-    while(new_start != NULL){
+        //cout << temp_current -> get_data() << endl;
+        //temp_current = temp_current -> getNext();
+        //cout << "inside while " << endl;
 
-        // find min first    
-        while(current != NULL){
-            if(current -> get_data() < minimum_score){
-                minimum_score = current -> get_data();
-                target = current;
-            }
-            current = current -> getNext();
+        if(temp_current->get_next() == NULL){break;}
+
+
+        if(temp_current -> get_next() -> get_data() < temp_current -> get_data()){
+            swap(temp_current, temp_current -> getNext());
+            temp_current = origin;
+            
         }
-        // minimum node is found at this point
-    
-        // if target is the same as new_start it is already where it is meant to be so just go next
-        if (target == new_start){
-            new_start = new_start -> getNext();
-            current = new_start;
-        }
+        //cout << "after swap" << temp_current -> get_data() << endl;
 
-        else if (target == tail){
-            // if target is the tail and new_start is the head
-            if (new_start -> get_previous() == NULL){
+        //if(temp_current == NULL){break;}
+        temp_current = temp_current -> getNext();
 
-                previous = target -> getPrevious();
-                previous -> set_next(NULL);
-                tail = previous;
-
-                target -> set_next(new_start);
-                target -> set_previous(NULL);
-                new_start -> set_previous(target);
-
-                head = target;
-            }
-            // if new_start is not the head but an internal node
-            else{
-                // swap normally
-                previous = target -> getPrevious();
-                previous -> set_next(NULL);
-                tail = previous;
-
-                target -> set_next(new_start);
-                target -> set_previous (new_start -> getPrevious());
-                new_start -> getPrevious() ->set_next(target);
-                new_start -> set_previous(target);
-            }
-            new_start = new_start -> getNext();
-            current = new_start;
-        }
-
-        // account for if a node is internal and new_start is head or otherwise
-        else{
-            // if new_start is head and target is an internal node
-            if(new_start -> get_previous() == NULL){
-                previous = target -> getPrevious();
-                next = target -> getNext();
-
-                previous -> set_next(next);
-                next -> set_previous(previous);
-                
-                target -> set_next(new_start);
-                target -> set_previous(NULL);
-                new_start -> set_previous(target);
-
-                head = target;
-            }
-            // if new_start and target are both internal nodes
-            else{
-                previous = target -> getPrevious();
-                next = target -> getNext();
-
-                previous -> set_next(next);
-                next -> set_previous(previous);
-
-                target -> set_next(new_start);
-                target -> set_previous(new_start -> getPrevious());
-                new_start -> getPrevious() -> set_next(target); 
-                new_start -> set_previous(target);
-            }
-            new_start = new_start -> getNext();
-            current = new_start;
-        }
+        //cout << "after tempcurrent get next" << temp_current -> get_data() << endl;
     }
-}// all pointing to null? SCOPE!
+}
