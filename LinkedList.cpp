@@ -187,7 +187,7 @@ void LinkedList::operator +=(LinkedList& list_rhs){
 // function to use for overloading << operator
 string LinkedList::LinkedList_to_string() const{
     // declare temp variables
-    Node* temp_current = current;
+    Node* temp_current = head;
     string output, object_name, string_object_score;
     int object_score;
     // traverse the list
@@ -216,19 +216,22 @@ ostream& operator <<(ostream& out, const LinkedList& list){
     return out;
 }
 
-void LinkedList::swap(Node* j, Node* jnext){
+
+void LinkedList::swap(Node* j, Node* jnext) {
     // activate this function if  current < next 
     // base with the question "is j > jnext?"
-    Node* jprevious; Node* jnextnext;
+    Node* jprevious; Node* jnextnext; Node* jpreviousprevious;
 
     jprevious = j -> getPrevious();
     jnextnext = jnext -> getNext();
+    jpreviousprevious = jprevious -> getPrevious();
 
     // if j is our head node and j is bigger than j next, swap and make jnext head
-    if (jprevious == NULL){ 
-        jnext -> set_previous(NULL);
+    if (jpreviousprevious == NULL){ 
+        
         jnext -> set_next(j);
         j -> set_previous(jnext);
+        jnext -> set_previous(NULL);
 
         jnextnext -> set_previous(j);
         j -> set_next(jnextnext);
@@ -246,7 +249,6 @@ void LinkedList::swap(Node* j, Node* jnext){
         j -> set_next(NULL);
         
         tail = j;
-
     }
 
     // if both nodes are neither tail nor heads i.e., internal nodes
@@ -260,27 +262,35 @@ void LinkedList::swap(Node* j, Node* jnext){
         j -> set_next(jnextnext);
         jnextnext -> set_previous(j);
     }
+
+    // sanity check to make sure heads and tails are always the beginning and end of the linkedlist, respectively
+    if(head == j){
+        head = jnext;
+    }
+
+    if (tail == jnext){
+        tail = j;
+    }
 }
 
 
-// sort linked list using scores of nodes
-// maybe boolean instantiation messed memory addresses up?
-
-// maybe everytime a swap happens, we revert back to head
 void LinkedList::order(){
+
     Node* temp_current = head;
     Node* origin = head;
 
-    //cout << temp_current -> get_data() << endl;
+    cout << "temp_current get next: "<<temp_current -> getNext() -> get_data() << endl;
 
-    while(temp_current != NULL){
+
+    while(temp_current -> get_next() != NULL){
 
         //cout << temp_current -> get_data() << endl;
         //temp_current = temp_current -> getNext();
         //cout << "inside while " << endl;
 
-        if(temp_current->get_next() == NULL){break;}
+        //if(temp_current->get_next() == NULL){temp_current = temp_current -> getPrevious();}
 
+        //cout << temp_current -> get_data() << endl;
 
         if(temp_current -> get_next() -> get_data() < temp_current -> get_data()){
             swap(temp_current, temp_current -> getNext());
@@ -293,5 +303,6 @@ void LinkedList::order(){
         temp_current = temp_current -> getNext();
 
         //cout << "after tempcurrent get next" << temp_current -> get_data() << endl;
+
     }
 }
