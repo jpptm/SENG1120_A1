@@ -154,7 +154,7 @@ void LinkedList::printStatistics() const{
         // move to the next node
         temp_current = temp_current -> getNext();
     }
-    // get average
+    // get average and display total
     double average = total / list_length;
     cout << "(" << min_score << " / " << average << " / " << max_score << ")" << endl;
 
@@ -211,7 +211,7 @@ string LinkedList::LinkedList_to_string() const{
 
 // overload << operator - should print (Object name ,object age)
 ostream& operator <<(ostream& out, const LinkedList& list){
-    // set node* variable so we can traverse our linked list
+    // use function above to return each data for each node within the linked list
     out << list.LinkedList_to_string();
     return out;
 }
@@ -222,11 +222,12 @@ void LinkedList::swap(Node* j, Node* jnext) {
     // base with the question "is j > jnext?"
     Node* jprevious; Node* jnextnext; Node* jpreviousprevious;
 
+    // declare temp node pointers - take all the neighbouring nodes when a swap happens so we don't encounter seg faults
     jprevious = j -> getPrevious();
     jnextnext = jnext -> getNext();
     jpreviousprevious = jprevious -> getPrevious();
 
-    // if j is our head node and j is bigger than j next, swap and make jnext head
+    // if j is our head node and j is bigger than jnext, swap and make jnext head
     if (jpreviousprevious == NULL){ 
         
         jnext -> set_next(j);
@@ -239,7 +240,7 @@ void LinkedList::swap(Node* j, Node* jnext) {
         head = jnext;
     }
 
-    // if jnext is tail and j is bigger than j next, swap and make j tails
+    // if jnext is tail and j is bigger than j next, swap and make j the new tail
     else if (jnextnext == NULL){
         jprevious -> set_next(jnext);
         jnext -> set_previous(jprevious);
@@ -251,7 +252,8 @@ void LinkedList::swap(Node* j, Node* jnext) {
         tail = j;
     }
 
-    // if both nodes are neither tail nor heads i.e., internal nodes
+    // if both nodes are neither tail nor heads i.e., internal nodes swap them
+    // also make sure that the neighbouring nodes are now pointing to the swapped values properly
     else{
         jnext -> set_next(j);
         j -> set_previous(jnext);
@@ -273,36 +275,26 @@ void LinkedList::swap(Node* j, Node* jnext) {
     }
 }
 
-
+// implement order() to sort nodes by score
 void LinkedList::order(){
-
+    // declare temp pointers - must minimise messing with member variables to diminish the risk of 
+    // undefined behaviour in the code
     Node* temp_current = head;
     Node* origin = head;
 
-    cout << "temp_current get next: "<<temp_current -> getNext() -> get_data() << endl;
-
-
+    // temp current is initially the beginning of our list
+    // go through the whole list and once swap() gets called take temp_current back to the very beginning and 
+    // traverse the list again - not ideal in terms of complexity since we will have to go through the same array
+    // n times until it gets sorted but this can be improved on later
     while(temp_current -> get_next() != NULL){
-
-        //cout << temp_current -> get_data() << endl;
-        //temp_current = temp_current -> getNext();
-        //cout << "inside while " << endl;
-
-        //if(temp_current->get_next() == NULL){temp_current = temp_current -> getPrevious();}
-
-        //cout << temp_current -> get_data() << endl;
-
         if(temp_current -> get_next() -> get_data() < temp_current -> get_data()){
             swap(temp_current, temp_current -> getNext());
+            // since swap() accounts for resetting the value of head, we make sure that origin is always the 
+            // beginning of our linked list
             temp_current = origin;
-            
         }
-        //cout << "after swap" << temp_current -> get_data() << endl;
-
-        //if(temp_current == NULL){break;}
+        // go next if current < next
         temp_current = temp_current -> getNext();
-
-        //cout << "after tempcurrent get next" << temp_current -> get_data() << endl;
 
     }
 }
