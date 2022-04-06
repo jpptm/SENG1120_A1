@@ -278,6 +278,7 @@ void LinkedList::swap(Node* j, Node* jnext) {
     }
 }
 
+
 // implement order() to sort nodes by score
 void LinkedList::order(){
     // declare temp pointers - must minimise messing with member variables to diminish the risk of 
