@@ -1,3 +1,6 @@
+// Author: Johanne Montano
+// Course: SENG1120
+// Student Number: c3336019
 #include <cstdlib>
 #include "Node.h"
 
@@ -24,7 +27,7 @@ void Node::set_data(value_type& node_data_){
     node_data = node_data_;
 }
 
-// getters
+// getters - use const when we can and non const when we must alter the state of the object
 const Node* Node::get_next() const{
     return next;
 }

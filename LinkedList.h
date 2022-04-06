@@ -1,3 +1,6 @@
+// Author: Johanne Montano
+// Course: SENG1120
+// Student Number: c3336019
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 #include "Node.h"
@@ -32,6 +35,9 @@ class LinkedList{
     // print function for printStatistics() - this is so we don't have to return a pointer so we don't break encapsulation
     string LinkedList_to_string() const;
     
+    //swap function for order()
+    void swap(Node* j, Node* jnext);
+
     // order method -sort nodes from lowest to highest marks
     void order();
 
