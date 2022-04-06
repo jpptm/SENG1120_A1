@@ -1,3 +1,6 @@
+// Author: Johanne Montano
+// Course: SENG1120
+// Student Number: c3336019
 #ifndef LINKED_LIST_H
 #define LINKED_LIST_H
 #include "Node.h"

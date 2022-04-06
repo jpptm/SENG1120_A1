@@ -1,3 +1,6 @@
+// Author: Johanne Montano
+// Course: SENG1120
+// Student Number: c3336019
 #include "LinkedList.h"
 #include <sstream>
 // linked list constructor
@@ -284,7 +287,7 @@ void LinkedList::order(){
 
     // temp current is initially the beginning of our list
     // go through the whole list and once swap() gets called take temp_current back to the very beginning and 
-    // traverse the list again - not ideal in terms of complexity since we will have to go through the same array
+    // traverse the list again - not ideal in terms of time complexity since we will have to go through the same array
     // n times until it gets sorted but this can be improved on later
     while(temp_current -> get_next() != NULL){
         if(temp_current -> get_next() -> get_data() < temp_current -> get_data()){

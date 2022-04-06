@@ -1,3 +1,6 @@
+// Author: Johanne Montano
+// Course: SENG1120
+// Student Number: c3336019
 #include <cstdlib>
 #include "Node.h"
 

@@ -42,6 +42,9 @@ int Student::get_score() const
 	return score;
 }
 
+// code below was written by Johanne Montano
+// Course: SENG1120
+// Student Number: c3336019
 // overloaded << for student class
 ostream& operator <<(ostream& out, const Student& value)
 {

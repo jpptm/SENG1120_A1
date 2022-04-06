@@ -39,5 +39,8 @@ class Student
 
 // output operator - non-member
 ostream& operator <<(ostream&, const Student&);
-
+// both operator overloads for Student.h have been written by
+// Author: Johanne Montano
+// Course: SENG1120
+// Student Number: c3336019
 #endif
