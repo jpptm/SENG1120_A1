@@ -224,16 +224,13 @@ ostream& operator <<(ostream& out, const LinkedList& list){
 void LinkedList::swap(Node* j, Node* jnext) {
     // activate this function if  current < next 
     // base with the question "is j > jnext?"
-    Node* jprevious; Node* jnextnext; Node* jpreviousprevious;
-
-    // declare temp node pointers - take all the neighbouring nodes when a swap happens so we don't encounter seg faults
-    jprevious = j -> getPrevious();
-    jnextnext = jnext -> getNext();
-    jpreviousprevious = jprevious -> getPrevious();
 
     // if j is our head node and j is bigger than jnext, swap and make jnext head
-    if (jpreviousprevious == NULL){ 
-        
+    if (j -> get_previous() == NULL){ 
+        // declare temp pointer
+        Node* jnextnext = j -> getNext() -> getNext();
+
+        // swap and make sure that pointers are set correctly and point to the right direction
         jnext -> set_next(j);
         j -> set_previous(jnext);
         jnext -> set_previous(NULL);
@@ -245,10 +242,15 @@ void LinkedList::swap(Node* j, Node* jnext) {
     }
 
     // if jnext is tail and j is bigger than j next, swap and make j the new tail
-    else if (jnextnext == NULL){
+    else if (j -> get_next() -> get_next() == NULL){
+        // declare temp node
+        Node* jprevious = j -> getPrevious();
+
+        // swap
         jprevious -> set_next(jnext);
         jnext -> set_previous(jprevious);
-
+        
+        // make sure pointers point in the right direction and are set correctly
         jnext -> set_next(j);
         j -> set_previous(jnext);
         j -> set_next(NULL);
@@ -259,6 +261,11 @@ void LinkedList::swap(Node* j, Node* jnext) {
     // if both nodes are neither tail nor heads i.e., internal nodes swap them
     // also make sure that the neighbouring nodes are now pointing to the swapped values properly
     else{
+        // declare temp nodes
+        Node* jprevious = j -> getPrevious();
+        Node* jnextnext = j -> getNext() -> getNext();
+
+        // swap and make sure pointers point in the right direction and are set correctly
         jnext -> set_next(j);
         j -> set_previous(jnext);
 
@@ -285,21 +292,37 @@ void LinkedList::order(){
     // declare temp pointers - must minimise messing with member variables to diminish the risk of 
     // undefined behaviour in the code
     Node* temp_current = head;
-    Node* origin = head;
+    int min_value = head -> get_data().get_score();
+     
+    // find min value
+    while (temp_current != NULL){
+        if (temp_current -> get_data().get_score() < min_value){
+            min_value = temp_current -> get_data().get_score();
+        }
+        temp_current = temp_current -> getNext();
+    }
 
-    // temp current is initially the beginning of our list
-    // go through the whole list and once swap() gets called take temp_current back to the very beginning and 
-    // traverse the list again - not ideal in terms of time complexity since we will have to go through the same array
-    // n times until it gets sorted but this can be improved on later
+    // reset
+    temp_current = head;
+
+    // go through the whole list
     while(temp_current -> get_next() != NULL){
         if(temp_current -> get_next() -> get_data() < temp_current -> get_data()){
             swap(temp_current, temp_current -> getNext());
             // since swap() accounts for resetting the value of head, we make sure that origin is always the 
             // beginning of our linked list
-            temp_current = origin;
+            temp_current = head;
         }
-        // go next if current < next
+        // go next
         temp_current = temp_current -> getNext();
-
     }
+
+    temp_current = head;
+
+    // if min value is smaller than head's score then we don't have the list fully sorted so go through it again
+    if (temp_current -> get_data().get_score() > min_value){
+        while(temp_current -> getNext() -> get_data() < temp_current -> get_data()){
+            swap(temp_current, temp_current -> getNext());
+        }
+    }   
 }
