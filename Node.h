@@ -36,6 +36,6 @@ class Node{
     value_type node_data;
 };
 
-
+// overload < operator to use for typedef objects
 bool operator <(const Node::value_type& object_lhs, const Node::value_type& object_rhs);
 #endif // NODE_H
