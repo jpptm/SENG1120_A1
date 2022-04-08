@@ -5,6 +5,8 @@
 #define LINKED_LIST_H
 #include "Node.h"
 #include <string>
+
+
 class LinkedList{
     public:
     // methods needed: add to tail, remove, operator +=  << overload, printStatistics, count, order and constructor
@@ -35,22 +37,26 @@ class LinkedList{
     // print function for printStatistics() - this is so we don't have to return a pointer so we don't break encapsulation
     string LinkedList_to_string() const;
     
-    //swap function for order()
-    void swap(Node* j, Node* jnext);
-
     // order method -sort nodes from lowest to highest marks
     void order();
 
     private:
     // include current node tag
     Node* current;
+
     // head of the linked list
     Node* head;
+
     // tail of the linked list
     Node* tail;
+
     // number of nodes within the list
     int list_length;
+
+    // swap function for order()
+    void swap(Node* j, Node* jnext);
 };
+
 
 ostream& operator <<(ostream& out, const LinkedList& list);
 #endif // LINKED_LIST_H
