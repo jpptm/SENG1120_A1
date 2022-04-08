@@ -37,9 +37,6 @@ class LinkedList{
     // print function for printStatistics() - this is so we don't have to return a pointer so we don't break encapsulation
     string LinkedList_to_string() const;
     
-    //swap function for order()
-    void swap(Node* j, Node* jnext);
-
     // order method -sort nodes from lowest to highest marks
     void order();
 
@@ -55,8 +52,8 @@ class LinkedList{
 
     // number of nodes within the list
     int list_length;
-    
-    //swap function for order()
+
+    // swap function for order()
     void swap(Node* j, Node* jnext);
 };
 
