@@ -35,4 +35,7 @@ class Node{
     Node* previous;
     value_type node_data;
 };
+
+
+bool operator <(const Node::value_type& object_lhs, const Node::value_type& object_rhs);
 #endif // NODE_H
