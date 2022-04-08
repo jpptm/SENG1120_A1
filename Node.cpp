@@ -47,3 +47,12 @@ Node* Node::getPrevious(){
 Node::value_type Node::get_data() const{
     return node_data;
 }
+
+bool operator <(const Node::value_type& object_lhs, const Node::value_type& object_rhs){
+    if (object_lhs.get_score() < object_rhs.get_score()){
+        return true;
+    }
+    else{
+        return false;
+    }
+}
