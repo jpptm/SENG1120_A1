@@ -48,3 +48,10 @@ ostream& operator <<(ostream& out, const Student& value)
     out << "(" << value.get_name() << "," << value.get_score() << ") ";
     return out;
 } 
+
+
+// Code for overloading operator < for student written by Johanne Montano
+bool operator <(Student& lhs, Student& rhs){
+	if(lhs.get_score() < rhs.get_score()) {return true;}
+	else {return false;}
+}
