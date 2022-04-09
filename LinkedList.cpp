@@ -21,7 +21,7 @@ LinkedList::~LinkedList(){
     if(list_length != 0){
         current = head;
         while( current != 0 ) {
-            Node* next = current ->getNext();
+            Node* next = current -> getNext();
             delete current;
             current = next;
         }
@@ -125,6 +125,7 @@ Node::value_type LinkedList::remove(string name_){
     }
     // revert current back to beginning of linked list
     current = head;
+    // return data
     return return_data;
 }
 
