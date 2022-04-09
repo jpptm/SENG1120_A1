@@ -38,5 +38,6 @@ class Student
 ostream& operator <<(ostream&, const Student&);
 
 // Code for overloading operator < for student written by Johanne Montano
+// Overload < to evaluate if one student did better than the other in terms of score
 bool operator <(const Student& lhs, const Student& rhs);
 #endif

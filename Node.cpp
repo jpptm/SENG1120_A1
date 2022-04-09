@@ -37,7 +37,7 @@ const Node* Node::get_previous() const{
     return previous;
 }
 
-Node* Node:: getNext(){
+Node* Node::getNext(){
     return next;
 }
 
