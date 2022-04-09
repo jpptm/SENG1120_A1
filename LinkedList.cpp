@@ -146,7 +146,7 @@ int LinkedList::count(const string name_) const{
 // print (minimum score/ mean score/ highest score)
 void LinkedList::printStatistics() const{
     // declare temp node pointer to current
-    Node* temp_current = current;
+    Node* temp_current = head;
     // declare temp variables
     double total = 0;
     int max_score = current -> get_data().get_score();
