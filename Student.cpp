@@ -51,7 +51,7 @@ ostream& operator <<(ostream& out, const Student& value)
 
 
 // Code for overloading operator < for student written by Johanne Montano
-bool operator <(Student& lhs, Student& rhs){
+bool operator <(const Student& lhs, const Student& rhs){
 	if(lhs.get_score() < rhs.get_score()) {return true;}
 	else {return false;}
 }

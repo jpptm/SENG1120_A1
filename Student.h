@@ -38,5 +38,5 @@ class Student
 ostream& operator <<(ostream&, const Student&);
 
 // Code for overloading operator < for student written by Johanne Montano
-bool operator <(Student& lhs, Student& rhs);
+bool operator <(const Student& lhs, const Student& rhs);
 #endif
