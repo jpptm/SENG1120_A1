@@ -7,6 +7,8 @@
 #include "Student.h"
 #include <cstdlib>
 
+// this class will serve as data containers for our linked list
+
 class Node{
     public:
     // initialise typedef
@@ -27,7 +29,7 @@ class Node{
     Node* getNext();
     const Node* get_previous() const;
     Node* getPrevious();
-    value_type get_data() const;
+    value_type& get_data();
     
     // declare private member variables
     private:

@@ -3,12 +3,13 @@
 // Student Number: c3336019
 #include <cstdlib>
 #include "Node.h"
+// this class will be used as data holders for a linked list
 
 // constructors
 Node::Node(Node* next_node, Node* previous_node, value_type& object_data){
-    this -> next = next_node;
-    this -> previous = previous_node;
-    this -> node_data = object_data;
+    next = next_node;
+    previous = previous_node;
+    node_data = object_data;
 }
 
 // empty destructor
@@ -44,7 +45,7 @@ Node* Node::getPrevious(){
     return previous;
 }
 
-Node::value_type Node::get_data() const{
+Node::value_type& Node::get_data(){
     return node_data;
 }
 

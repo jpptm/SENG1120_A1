@@ -15,7 +15,17 @@ LinkedList::LinkedList(){
 
 
 // declare destructor
-LinkedList::~LinkedList(){}
+LinkedList::~LinkedList(){
+    if(list_length != 0){
+        current = head;
+        while( current != 0 ) {
+            Node* next = current ->getNext();
+            delete current;
+            current = next;
+        }
+    }
+    head = 0;
+}
 
 
 // pass value_type data by reference and add to the tail of our linked list in the heap
@@ -36,19 +46,20 @@ void LinkedList::addToTail(Node::value_type& data){
 
     else{
         // set data and update tail for linked list
-        Node* new_tail = new Node(NULL, this->tail, data);
-        this -> tail -> set_next(new_tail);
-        this -> tail = new_tail;
+        Node* new_tail = new Node(NULL, tail, data);
+        tail -> set_next(new_tail);
+        tail = new_tail;
         list_length++;
     }
 }
 
 
 // remove node using the object's name attribute
-void LinkedList::remove(string name_){
+Node::value_type LinkedList::remove(string name_){
     // if linked list is empty just skip the call
+    Node::value_type return_data = Node::value_type();
     if(list_length == 0){
-        return;
+        return return_data;
     }
     else{
         // current is initialised as head by default
@@ -57,7 +68,7 @@ void LinkedList::remove(string name_){
         while (current != NULL){
             if((current -> get_data()).get_name() == name_){
                 // account for three scenarios - deleting head, deleting tail, and deleting an internal node
-
+                return_data = current -> get_data();
                 // account for removing head
                 if(current -> get_previous() == NULL){
                     // set head's next to be the new head then delete the old head
@@ -109,11 +120,12 @@ void LinkedList::remove(string name_){
     }
     // revert current back to beginning of linked list
     current = head;
+    return return_data;
 }
 
 
 // return the number of students with the same name
-int LinkedList::count(string name_) const{
+int LinkedList::count(const string name_) const{
     // initialise temp node and count variable
     Node* temp_current = head;
     int count = 0;
@@ -127,7 +139,6 @@ int LinkedList::count(string name_) const{
         temp_current = temp_current -> getNext();
     }
     // destroy temp object and return count
-    delete temp_current;
     return count;
 }
 
@@ -178,7 +189,7 @@ void LinkedList::operator +=(LinkedList& list_rhs){
     // traverse the whole list
     while (temp_current != NULL){
         Node::value_type object_data = temp_current -> get_data();
-        this -> addToTail(object_data);
+        addToTail(object_data);
         temp_current = temp_current -> getNext();
     }
     // variables declared up above must be declared in the heap
@@ -307,7 +318,7 @@ void LinkedList::order(){
 
     // go through the whole list
     while(temp_current -> get_next() != NULL){
-        if(temp_current -> get_next() -> get_data() < temp_current -> get_data()){
+        if(temp_current -> getNext() -> get_data() < temp_current -> get_data()){
             swap(temp_current, temp_current -> getNext());
             // since swap() accounts for resetting the value of head, we make sure that origin is always the 
             // beginning of our linked list
