@@ -6,7 +6,7 @@
 #include "Node.h"
 #include <string>
 
-
+// Linked list class to contain all nodes with needed data
 class LinkedList{
     public:
     // methods needed: add to tail, remove, operator +=  << overload, printStatistics, count, order and constructor
@@ -23,13 +23,13 @@ class LinkedList{
     void operator +=(LinkedList& list_rhs);
 
     // remove node by using the string value of the object as a tag / marker
-    void remove(string name_);
+    Node::value_type remove(string name_);
 
     // print (lowest score/ mean / highest score)
     void printStatistics() const;
 
     // count number of students that have the same name by taking a string input
-    int count(string name_) const;
+    int count(const string name_) const;
 
     // return list length
     int get_list_length() const;
