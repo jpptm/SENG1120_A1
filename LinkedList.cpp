@@ -4,6 +4,8 @@
 #include "LinkedList.h"
 #include <sstream>
 
+// Linked list implementation to contain all needed data
+
 // linked list constructor
 LinkedList::LinkedList(){
     // set head, tail and current and list length to null initially,

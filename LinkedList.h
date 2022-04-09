@@ -6,7 +6,7 @@
 #include "Node.h"
 #include <string>
 
-
+// Linked list class to contain all nodes with needed data
 class LinkedList{
     public:
     // methods needed: add to tail, remove, operator +=  << overload, printStatistics, count, order and constructor
