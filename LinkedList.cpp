@@ -76,6 +76,7 @@ Node::value_type LinkedList::remove(string name_){
                     delete current;
                     // set current back to head
                     current = head;
+                    head -> set_previous(NULL);
                     // decrement list length
                     list_length--;
                 }
