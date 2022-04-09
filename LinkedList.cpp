@@ -58,8 +58,9 @@ void LinkedList::addToTail(Node::value_type& data){
 
 // remove node using the object's name attribute
 Node::value_type LinkedList::remove(string name_){
-    // if linked list is empty just skip the call
+    // temp var to hold the data we want to remove
     Node::value_type return_data = Node::value_type();
+    // if linked list is empty just skip the call
     if(list_length == 0){
         return return_data;
     }
@@ -69,8 +70,9 @@ Node::value_type LinkedList::remove(string name_){
         // run through the whole list
         while (current != NULL){
             if((current -> get_data()).get_name() == name_){
-                // account for three scenarios - deleting head, deleting tail, and deleting an internal node
+                // get the data of the node that is about to get deleted
                 return_data = current -> get_data();
+                // account for three scenarios - deleting head, deleting tail, and deleting an internal node
                 // account for removing head
                 if(current -> get_previous() == NULL){
                     // set head's next to be the new head then delete the old head
